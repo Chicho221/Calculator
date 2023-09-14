@@ -15,12 +15,16 @@ const numberBtns = document.querySelectorAll('[data-number]');
 const operatorBtns = document.querySelectorAll('[data-operator]');
 const resetBtn = document.querySelector('#reset');
 const equalsBtn = document.querySelector('#equalsBtn');
+const dotBtn = document.querySelector('.dotBtn')
 const display = document.querySelector('.display');
+
 
 //Number Buttons
 numberBtns.forEach((button) =>{
     button.addEventListener('click',() => {
-        if(firstNumber != '' && operator == null){
+        if(display.textContent == 'ERROR'){
+            resetCalculator();
+        } else if(firstNumber != '' && operator == null){
             resetCalculator();
         }
         appendNumber(button.textContent)
@@ -30,9 +34,29 @@ numberBtns.forEach((button) =>{
 function appendNumber(number){
     display.textContent += number;
 }
+
+//Dot Button
+let dotBtnState = true;
+function resetDotState(){
+    dotBtnState = true;
+}
+dotBtn.addEventListener('click',() =>{
+    if(dotBtnState === false){
+        return;
+    }else if(display.textContent == 'ERROR' || display.textContent == ''){
+        return;
+    }else {
+      dotBtnState = false;
+      appendNumber(dotBtn.textContent);  
+    }
+})
+
 //Operator Buttons
-operatorBtns.forEach((button) =>{//sets operator value to button value
+operatorBtns.forEach((button) =>{//sets operator value to button value NOTE:Allows for user to put in multiple operators in textContent. Will be fixed with dynamic one. Hope so :).
     button.addEventListener('click',() => {
+        if(display.textContent == '' || display.textContent == 'ERROR'){
+            return;
+        }
         setOperator(button.textContent)
         if(operator != null){
             operate();
@@ -40,7 +64,7 @@ operatorBtns.forEach((button) =>{//sets operator value to button value
             operator = button.textContent;
         }
         operator = button.textContent;
-        
+        resetDotState()
     })
 });
     
@@ -51,6 +75,7 @@ function setOperator(operator){
 function getValues(){
     let valueString = display.textContent;
     let valueArray = valueString.split(' ');
+    
     firstNumber = valueArray[0]
     operator = valueArray[1]
     nextNumber = valueArray[2]
@@ -65,6 +90,7 @@ function clearDisplay(){
 //Resets to default values and clears display
 resetBtn.addEventListener('click', () => resetCalculator())
 function resetCalculator(){
+    resetDotState()
     display.textContent = '';
     firstNumber  = '';
     nextNumber = '';
@@ -74,6 +100,9 @@ function resetCalculator(){
 //Does calculations
 function operate(){
     getValues();
+    if(nextNumber == '' || firstNumber == ''){
+        return;
+    }
     a = parseFloat(firstNumber);
     b = parseFloat(nextNumber);
     oper = operator;
@@ -81,8 +110,8 @@ function operate(){
     switch(oper){
         case '+':
         return firstNumber = addition(a, b),
-               nextNumber = '',
-               operator = null;
+            nextNumber = '',
+            operator = null;
         case '-':
             return firstNumber = subtraction(a, b),
             nextNumber = '',
@@ -122,6 +151,10 @@ function multiplication(a, b){
 }
 //Division function
 function division(a, b){
+    if(b == 0){
+        display.textContent = 'ERROR';
+        return;
+    }
     result = a / b;
     result = parseFloat (result.toFixed(1));
     display.textContent = result
