@@ -31,10 +31,16 @@ function appendNumber(number){
     display.textContent += number;
 }
 //Operator Buttons
-operatorBtns.forEach((button) =>{
+operatorBtns.forEach((button) =>{//sets operator value to button value
     button.addEventListener('click',() => {
         setOperator(button.textContent)
+        if(operator != null){
+            operate();
+            setOperator(button.textContent)
+            operator = button.textContent;
+        }
         operator = button.textContent;
+        
     })
 });
     
@@ -68,8 +74,8 @@ function resetCalculator(){
 //Does calculations
 function operate(){
     getValues();
-    a = parseInt(firstNumber);
-    b = parseInt(nextNumber);
+    a = parseFloat(firstNumber);
+    b = parseFloat(nextNumber);
     oper = operator;
 
     switch(oper){
@@ -94,19 +100,30 @@ function operate(){
 
 //Addition fuction
 function addition(a, b){
-    result = display.textContent = a + b;
+    result = a + b;
+    result = parseFloat (result.toFixed(1));
+    display.textContent = result
     return result;
 //    return console.log(sum)
 }
 //Subtraction function
 function subtraction(a, b){
-    display.textContent = a - b;
+    result = a - b;
+    result = parseFloat (result.toFixed(1));
+    display.textContent = result
+    return result;
 }
 //Multiplication function
 function multiplication(a, b){
-    display.textContent = a * b;
+    result = a * b;
+    result = parseFloat (result.toFixed(1));
+    display.textContent = result
+    return result;
 }
 //Division function
 function division(a, b){
-    display.textContent = a / b;
+    result = a / b;
+    result = parseFloat (result.toFixed(1));
+    display.textContent = result
+    return result;
 }
