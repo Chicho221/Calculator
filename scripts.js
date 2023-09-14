@@ -7,15 +7,41 @@ Add division--
 
 Should work in console for now
 */
-let firstNumber = 1;
-let nextNumber = 1;
-let operator;
+let firstNumber = '';
+let nextNumber = '';
+let operator = null;
+
+const numberBtns = document.querySelectorAll('[data-number]');
+const operatorBtns = document.querySelectorAll('[data-operator]');
+const clearBtn = document.querySelector('#clear');
+const display = document.querySelector('.display');
+
+numberBtns.forEach((button) =>{
+    button.addEventListener('click',() => appendNumber(button.textContent))
+})
+
+function appendNumber(number){
+    display.textContent += number;
+}
+
+operatorBtns.forEach((button) =>{
+    button.addEventListener('click',() => setOperator(button.textContent))
+})
+
+function setOperator(operator){
+    display.textContent += operator;
+}
+
+function clearDisplay(){
+    display.textContent = '';
+}
+
 
 function operate(){
     a = firstNumber;
     b = nextNumber;
     oper = operator;
-    
+
     switch(oper){
         case '+':
         return addition(a, b);
