@@ -15,7 +15,8 @@ const numberBtns = document.querySelectorAll('[data-number]');
 const operatorBtns = document.querySelectorAll('[data-operator]');
 const resetBtn = document.querySelector('#reset');
 const equalsBtn = document.querySelector('#equalsBtn');
-const dotBtn = document.querySelector('.dotBtn')
+const dotBtn = document.querySelector('.dotBtn');
+const backspaceBtn = document.querySelector('.backspace');
 const display = document.querySelector('.display');
 
 
@@ -49,6 +50,12 @@ dotBtn.addEventListener('click',() =>{
       dotBtnState = false;
       appendNumber(dotBtn.textContent);  
     }
+})
+
+//Backspace Button
+backspaceBtn.addEventListener('click',() =>{ //Works with numbers but has problems with operators.
+    cont = display.textContent;
+    display.textContent = cont.slice(0,-1);
 })
 
 //Operator Buttons
