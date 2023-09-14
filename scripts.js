@@ -19,17 +19,25 @@ const display = document.querySelector('.display');
 
 //Number Buttons
 numberBtns.forEach((button) =>{
-    button.addEventListener('click',() => appendNumber(button.textContent))
-})
+    button.addEventListener('click',() => {
+        if(firstNumber != '' && operator == null){
+            resetCalculator();
+        }
+        appendNumber(button.textContent)
+    })
+});
 
 function appendNumber(number){
     display.textContent += number;
 }
 //Operator Buttons
 operatorBtns.forEach((button) =>{
-    button.addEventListener('click',() => setOperator(button.textContent))
-})
-
+    button.addEventListener('click',() => {
+        setOperator(button.textContent)
+        operator = button.textContent;
+    })
+});
+    
 function setOperator(operator){
     display.textContent += ` ${operator} `;
 }
@@ -66,31 +74,39 @@ function operate(){
 
     switch(oper){
         case '+':
-        return addition(a, b);
+        return firstNumber = addition(a, b),
+               nextNumber = '',
+               operator = null;
         case '-':
-        return subtraction(a, b);
+            return firstNumber = subtraction(a, b),
+            nextNumber = '',
+            operator = null;
         case '*':
-        return multiplication(a, b);
+            return firstNumber = multiplication(a, b),
+            nextNumber = '',
+            operator = null;
         case '/':
-        return division(a, b);
+            return firstNumber = division(a, b),
+            nextNumber = '',
+            operator = null;
     }
-
 };
 
 //Addition fuction
 function addition(a, b){
-    display.textContent = a + b;
+    result = display.textContent = a + b;
+    return result;
 //    return console.log(sum)
 }
 //Subtraction function
 function subtraction(a, b){
-    return a - b;
+    display.textContent = a - b;
 }
 //Multiplication function
 function multiplication(a, b){
-    return a * b;
+    display.textContent = a * b;
 }
 //Division function
 function division(a, b){
-    return a / b;
+    display.textContent = a / b;
 }
