@@ -32,6 +32,18 @@ numberBtns.forEach((button) =>{
     })
 });
 
+//Keyboard number support
+window.addEventListener('keydown',(event) =>{
+    if(!(event.key >= 0)){
+    return;
+    }else if(display.textContent == 'ERROR'){
+        resetCalculator();
+    } else if(firstNumber != '' && operator == null){
+        resetCalculator();
+    }
+    appendNumber(event.key)
+})
+
 function appendNumber(number){
     display.textContent += number;
 }
@@ -51,11 +63,33 @@ dotBtn.addEventListener('click',() =>{
       appendNumber(dotBtn.textContent);  
     }
 })
+//Keyboard dot support
+window.addEventListener('keydown',(event) =>{
+    if(!(event.key == '.')){
+        return;
+    }else {
+        if(dotBtnState === false){
+            return;
+        }else if(display.textContent == 'ERROR' || display.textContent == ''){
+            return;
+        }else {
+          dotBtnState = false;
+          appendNumber(dotBtn.textContent);  
+        }
+    }
+})
 
 //Backspace Button
 backspaceBtn.addEventListener('click',() =>{ //Works with numbers but has problems with operators.
     cont = display.textContent;
     display.textContent = cont.slice(0,-1);
+})
+//Keyboard backspace support
+window.addEventListener('keydown',(event) =>{
+    if(event.key == 'Backspace'){
+    cont = display.textContent;
+    display.textContent = cont.slice(0,-1);
+    }
 })
 
 //Operator Buttons
@@ -74,7 +108,26 @@ operatorBtns.forEach((button) =>{//sets operator value to button value NOTE:Allo
         resetDotState()
     })
 });
-    
+//Keyboard operator support
+window.addEventListener('keydown',(event) =>{
+    if(!(event.key == '+' ||event.key == '-' ||event.key == '*' ||event.key == '/')){
+        return;
+    }else{
+        if(display.textContent == '' || display.textContent == 'ERROR'){
+            return;
+        }
+        setOperator(event.key)
+        if(operator != null){
+            operate();
+            setOperator(event.key)
+            operator = event.key;
+        }
+        operator = event.key;
+        resetDotState()
+    }
+
+})
+
 function setOperator(operator){
     display.textContent += ` ${operator} `;
 }
@@ -89,6 +142,14 @@ function getValues(){
 }
 //Show result
 equalsBtn.addEventListener('click',() => operate())
+
+window.addEventListener('keydown',(event) =>{
+    if(!(event.key == 'Enter')){
+        return;
+    }else{
+        operate();
+    }
+});
 
 //Clears display only (might need for more dynamic one)
 function clearDisplay(){
