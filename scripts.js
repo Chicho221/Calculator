@@ -201,9 +201,12 @@ function resetCalculator(){
 //Does calculations
 function operate(){
     if(nextNumber == '' && secondDisplay.textContent != ''){
-        nextNumber = display.textContent;
-    }
-    else if(firstNumber == '' || nextNumber == ''){
+        if(display.textContent == ''){
+            return
+        }else{
+            nextNumber = display.textContent; 
+        }
+    }else if(firstNumber == '' || nextNumber == ''){
         return;
     }
     a = parseFloat(firstNumber);
