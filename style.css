@@ -5,6 +5,10 @@ body{
     background-color: rgb(27, 27, 27);
 }
 
+p{
+    margin:0;
+}
+
 #container{
     display: flex;
     flex-direction: column;
@@ -80,7 +84,42 @@ button{
     color: white;
     background-color:rgb(255, 185, 56) ;
 }
-
 .long-button{
     height: 210px;
+}
+
+#footer{
+
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+#footer a:hover{
+    color: rgb(184, 184, 184);
+}
+
+#footer p{
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    padding-bottom: 15px;
+}
+
+#footer img{
+    width: 42px;
+    height: 42px;
+    padding: 50px 0px 15px 15px;
+}
+
+.author{
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    padding-left: 5px;
+    padding-bottom: 15px;
 }
