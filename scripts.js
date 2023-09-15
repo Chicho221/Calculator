@@ -102,17 +102,21 @@ window.addEventListener('keydown',(event) =>{
 //Operator Buttons
 operatorBtns.forEach((button) =>{//sets operator value to button value NOTE:Allows for user to put in multiple operators in textContent. Will be fixed with dynamic one. Hope so :).
     button.addEventListener('click',() => {
-        if(display.textContent == '' || display.textContent == 'ERROR'){
-            return;
-        }
-        setOperator(button.textContent)
-        if(operator != null){
-            operate();
-            setOperator(button.textContent)
+        if(operator == null){
             operator = button.textContent;
         }
-        operator = button.textContent;
-        resetDotState()
+        if(firstNumber != ''){
+            nextNumber = display.textContent;
+            
+            operate();
+            operator = button.textContent;
+            clearDisplay();
+            updateSecondDisplay();
+            return;
+        }
+        firstNumber = display.textContent;
+        clearDisplay();
+        updateSecondDisplay();
     })
 });
 //Keyboard operator support
@@ -138,7 +142,7 @@ window.addEventListener('keydown',(event) =>{
 function setOperator(operator){
     display.textContent += ` ${operator} `;
 }
-//Get values from display
+/* //Get values from display
 function getValues(){
     let valueString = display.textContent;
     let valueArray = valueString.split(' ');
@@ -146,7 +150,7 @@ function getValues(){
     firstNumber = valueArray[0]
     operator = valueArray[1]
     nextNumber = valueArray[2]
-}
+} */
 //Show result
 equalsBtn.addEventListener('click',() => operate())
 
@@ -160,12 +164,14 @@ window.addEventListener('keydown',(event) =>{
 
 //Clears display only (might need for more dynamic one)
 function clearDisplay(){
+    resetDotState()
     display.textContent = '';
 }
 //Resets to default values and clears display
 resetBtn.addEventListener('click', () => resetCalculator())
 function resetCalculator(){
     resetDotState()
+    secondDisplay.textContent = '';
     display.textContent = '';
     firstNumber  = '';
     nextNumber = '';
@@ -174,7 +180,6 @@ function resetCalculator(){
 
 //Does calculations
 function operate(){
-    getValues();
     if(nextNumber == '' || firstNumber == ''){
         return;
     }
