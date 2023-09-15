@@ -29,9 +29,23 @@ p{
     flex-direction: column;
     /* background-color: blue; */
     width: 440px;
-    height: 770px;
+    height: 780px;
 }
-
+.second-display{
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 197, 91, 0.863);
+    font-size: 25px;
+    background-color: rgb(65, 65, 65);
+    background-color: rgb(65, 65, 65);
+    border-style: solid;
+    border-color: rgb(56, 56, 56);
+    border-width: 10px 10px 0px 10px;
+    border-radius: 15px 15px 0px 0px;
+    padding: 0px 10px 0px 10px;
+    height: 30px;
+    width: 400px;
+    
+}
 .display{
     box-sizing: border-box;
     display: flex;
@@ -42,10 +56,12 @@ p{
     color: orange;
     height: 100px;
     width: 440px;
-    padding: 10px;
+    padding: 10px 10px 0px 10px;
     background-color: rgb(65, 65, 65);
-    border: 10px solid rgb(56, 56, 56);
-    border-radius: 15px 15px 0px 0px;
+    border-style: solid;
+    border-color: rgb(56, 56, 56);
+    border-width: 0px 10px 10px 10px;
+    
 }
 
 .cornerBottomLeft{
