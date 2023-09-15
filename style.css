@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(27, 27, 27);
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
+    margin-top: 200px;
+    width: 440px;
+    height: 650px;
+}
+
+.display{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    font-family: 'Roboto', sans-serif;
+    font-size: 50px;
+    color: orange;
+    height: 100px;
+    width: 440px;
+    padding: 10px ;
+    background-color: rgb(65, 65, 65);
+    border: 10px solid rgb(56, 56, 56);
+    border-radius: 15px 15px 0px 0px;
+}
+
+.cornerBottomLeft{
+    border-radius: 0 0 0 15px;
+}
+.cornerBottomRight{
+    border-radius: 0 0 15px 0;
+}
+#container-columns{
+    display: flex;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(56, 56, 56);
+}
+button{
+    margin:5px;
+    font-size: 32px;
+    border: 0px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(65, 65, 65);
+    border-radius: 70px;
+}
+.button-number{
+    color: white;
+}
+.button-operator{
+    color: orange;
+}
+.button-reset{
+    color: rgb(247, 92, 92);
+}
+.button-result{
+    color: white;
+    background-color:orange ;
+}
+
+.button-number:hover{
+    background-color: rgb(82, 82, 82);
+}
+.button-operator:hover{
+    background-color: rgb(82, 82, 82);
+}
+.button-reset:hover{
+    background-color: rgb(82, 82, 82);
+}
+.button-result:hover{
+    color: white;
+    background-color:rgb(255, 185, 56) ;
+}
+
+.long-button{
+    height: 210px;
+}

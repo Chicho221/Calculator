@@ -3,30 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
 </head>
 <body>
-    <div class="display"></div>
-    <button class="btn" data-number>1</button>
-    <button class="btn" data-number>2</button>
-    <button class="btn" data-number>3</button>
-    <button class="btn" data-number>4</button>
-    <button class="btn" data-number>5</button>
-    <button class="btn" data-number>6</button>
-    <button class="btn" data-number>7</button>
-    <button class="btn" data-number>8</button>
-    <button class="btn" data-number>9</button>
-    <button class="btn" data-number>0</button>
-    <button class="dotBtn">.</button>
-    <button class="btn" data-operator>-</button>
-    <button class="btn" data-operator>+</button>
-    <button class="btn" data-operator>*</button>
-    <button class="btn" data-operator>/</button>
-    <button class="btn" id="equalsBtn">=</button>
-    <button class="btn" id="reset">Reset</button>
-    <button class="backspace">Backspace</button>
+    <div id="container">
+        <div class="display"></div>
+        <div id="container-columns">
+                <!--First Row-->
+        <div class="column cornerBottomLeft">
+            <button class="btn button-reset" id="reset">AC</button>
+            <button class="btn button-number" data-number>7</button>
+            <button class="btn button-number" data-number>4</button>
+            <button class="btn button-number" data-number>3</button>
+            <button class="btn button-number" data-number>0</button>
+        </div>
+                <!--Second Row-->
+        <div class="column">
+            <button class="backspace button-reset">C</button>
+            <button class="btn button-number" data-number>8</button>
+            <button class="btn button-number" data-number>5</button>
+            <button class="btn button-number" data-number>2</button>
+            <button class="dotBtn button-number">.</button>
+        </div>
+                <!--Third Row-->
+        <div class="column">
+            <button class="btn button-operator" data-operator>/</button>
+            <button class="btn button-number" data-number>9</button>
+            <button class="btn button-number" data-number>6</button>
+            <button class="btn button-number" data-number>1</button>
+            <button class="btn button-result" id="equalsBtn">=</button>
+        </div>
+                <!--Fourth Row-->
+        <div class="column cornerBottomRight">
+            <button class="btn button-operator" data-operator>*</button>
+            <button class="btn long-button button-operator" data-operator>-</button>
+            <button class="btn long-button button-operator" data-operator>+</button>
+        </div>
+    </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div id="container">
+        <div id="container-rows">
+            <div class="display"></div>
+        </div>
+        <div id="container-columns">
+                <!--First Row
+        <div class="column">
+            <button class="btn" id="reset">Reset</button>
+            <button class="btn" data-number>7</button>
+            <button class="btn" data-number>4</button>
+            <button class="btn" data-number>3</button>
+            <button class="btn" data-number>0</button>
+        </div>
+                <!--Second Row
+        <div class="column">
+            <button class="backspace">Backspace</button>
+            <button class="btn" data-number>8</button>
+            <button class="btn" data-number>5</button>
+            <button class="btn" data-number>2</button>
+            <button class="dotBtn">.</button>
+        </div>
+                <!--Third Row
+        <div class="column">
+            <button class="btn" data-operator>/</button>
+            <button class="btn" data-number>9</button>
+            <button class="btn" data-number>6</button>
+            <button class="btn" data-number>1</button>
+            <button class="btn" id="equalsBtn">=</button>
+        </div>
+                <!--Fourth Row
+        <div class="column">
+            <button class="btn" data-operator>*</button>
+            <button class="btn long-button" data-operator>-</button>
+            <button class="btn long-button" data-operator>+</button>
+        </div>
+    </div> -->
 <script src="scripts.js"></script>    
 </body>
 </html>
