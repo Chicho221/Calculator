@@ -102,17 +102,33 @@ window.addEventListener('keydown',(event) =>{
 //Operator Buttons
 operatorBtns.forEach((button) =>{//sets operator value to button value NOTE:Allows for user to put in multiple operators in textContent. Will be fixed with dynamic one. Hope so :).
     button.addEventListener('click',() => {
+        if(secondDisplay.textContent == '' && display.textContent == '' ){
+            return;
+        }
         if(operator == null){
             operator = button.textContent;
         }
-        if(firstNumber != ''){
-            nextNumber = display.textContent;
-            
-            operate();
-            operator = button.textContent;
-            clearDisplay();
-            updateSecondDisplay();
+        if(display.textContent == 'ERROR'){
+            resetCalculator();
             return;
+        }
+        if(firstNumber != '' || firstNumber == '0'){
+            if(secondDisplay.textContent == ''){
+                updateSecondDisplay();
+                clearDisplay();
+                return;
+            }else if(display.textContent == '' && secondDisplay.textContent != ''){
+                operator = button.textContent;
+                updateSecondDisplay();
+                return;
+            }
+                nextNumber = display.textContent;
+            
+                operate();
+                operator = button.textContent;
+                clearDisplay();
+                updateSecondDisplay();
+                return;   
         }
         firstNumber = display.textContent;
         clearDisplay();
@@ -142,15 +158,6 @@ window.addEventListener('keydown',(event) =>{
 function setOperator(operator){
     display.textContent += ` ${operator} `;
 }
-/* //Get values from display
-function getValues(){
-    let valueString = display.textContent;
-    let valueArray = valueString.split(' ');
-    
-    firstNumber = valueArray[0]
-    operator = valueArray[1]
-    nextNumber = valueArray[2]
-} */
 //Show result
 equalsBtn.addEventListener('click',() => operate())
 
@@ -167,6 +174,10 @@ function clearDisplay(){
     resetDotState()
     display.textContent = '';
 }
+function clearSecondDisplay(){
+    resetDotState()
+    secondDisplay.textContent = '';
+}
 //Resets to default values and clears display
 resetBtn.addEventListener('click', () => resetCalculator())
 function resetCalculator(){
@@ -180,18 +191,23 @@ function resetCalculator(){
 
 //Does calculations
 function operate(){
-    if(nextNumber == '' || firstNumber == ''){
+    if(nextNumber == '' && secondDisplay.textContent != ''){
+        nextNumber = display.textContent;
+    }
+    else if(firstNumber == '' || nextNumber == ''){
         return;
     }
     a = parseFloat(firstNumber);
     b = parseFloat(nextNumber);
     oper = operator;
-
+    clearSecondDisplay()
+    
     switch(oper){
         case '+':
         return firstNumber = addition(a, b),
             nextNumber = '',
             operator = null;
+            
         case '-':
             return firstNumber = subtraction(a, b),
             nextNumber = '',
@@ -205,6 +221,7 @@ function operate(){
             nextNumber = '',
             operator = null;
     }
+    
 };
 
 //Addition fuction
