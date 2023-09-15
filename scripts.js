@@ -18,7 +18,14 @@ const equalsBtn = document.querySelector('#equalsBtn');
 const dotBtn = document.querySelector('.dotBtn');
 const backspaceBtn = document.querySelector('.backspace');
 const display = document.querySelector('.display');
+const secondDisplay = document.querySelector('.second-display');
 
+function updateSecondDisplay(){
+    if(operator == null){
+        secondDisplay.textContent = `${firstNumber}`;
+    }
+    secondDisplay.textContent = `${firstNumber} ${operator}`;
+}
 
 //Number Buttons
 numberBtns.forEach((button) =>{
