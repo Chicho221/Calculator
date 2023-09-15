@@ -139,20 +139,37 @@ operatorBtns.forEach((button) =>{//sets operator value to button value NOTE:Allo
 window.addEventListener('keydown',(event) =>{
     if(!(event.key == '+' ||event.key == '-' ||event.key == '*' ||event.key == '/')){
         return;
-    }else{
-        if(display.textContent == '' || display.textContent == 'ERROR'){
+    }else if(secondDisplay.textContent == '' && display.textContent == '' ){
+        return;
+    }
+    if(operator == null){
+        operator = event.key;
+    }
+    if(display.textContent == 'ERROR'){
+        resetCalculator();
+        return;
+    }
+    if(firstNumber != '' || firstNumber == '0'){
+        if(secondDisplay.textContent == ''){
+            updateSecondDisplay();
+            clearDisplay();
+            return;
+        }else if(display.textContent == '' && secondDisplay.textContent != ''){
+            operator = button.textContent;
+            updateSecondDisplay();
             return;
         }
-        setOperator(event.key)
-        if(operator != null){
+            nextNumber = display.textContent;
+        
             operate();
-            setOperator(event.key)
             operator = event.key;
-        }
-        operator = event.key;
-        resetDotState()
+            clearDisplay();
+            updateSecondDisplay();
+            return;   
     }
-
+    firstNumber = display.textContent;
+    clearDisplay();
+    updateSecondDisplay();
 })
 
 function setOperator(operator){
@@ -160,14 +177,6 @@ function setOperator(operator){
 }
 //Show result
 equalsBtn.addEventListener('click',() => operate())
-
-window.addEventListener('keydown',(event) =>{
-    if(!(event.key == 'Enter')){
-        return;
-    }else{
-        operate();
-    }
-});
 
 //Clears display only (might need for more dynamic one)
 function clearDisplay(){
